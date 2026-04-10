@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View } from 'react-native';
 import { TaskList, TaskForm, useTasks, Task } from '../../features/tasks';
 import { useToastStore } from '../../stores/toast.store';
+import { useThemeStore } from '../../stores/theme.store';
 
 export default function TasksScreen() {
   const { addTask, editTask, deleteTask } = useTasks();
@@ -28,8 +29,11 @@ export default function TasksScreen() {
     showToast('Task deleted successfully');
   };
 
+  const { theme } = useThemeStore();
+  const isDark = theme === 'dark';
+
   return (
-    <View className="flex-1 bg-background-light dark:bg-background-dark px-4 pt-4">
+    <View className={`flex-1 px-4 pt-6 ${isDark ? 'bg-background-dark' : 'bg-background-light'}`}>
       <TaskForm 
         initialTitle={editingTask?.title}
         submitLabel={editingTask ? 'edit' : 'add'}
