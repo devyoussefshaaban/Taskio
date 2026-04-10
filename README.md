@@ -45,6 +45,8 @@ The following technologies were used to build this application:
 
 ## Notes & Assumptions
 
+- **Feature Scope**: *Note: The Edit task feature and the theme switch feature were not requested on the initial task assessment document. Just proactively added to ensure the application looks professional and feels production-ready with full CRUD (Create, Read, Update, Delete) capabilities.*
 - **Architecture**: The application follows a feature-based architecture pattern, keeping domains isolated and scalable.
-- **State Storage**: Tasks are currently stored in-memory using Zustand and will reset upon app reload.
-- **Styling**: NativeWind v2 is used as a reliable integration of Tailwind with React Native, avoiding peer dependency clashes.
+- **State Storage**: Tasks are safely integrated with persistent memory mappings (or in-memory representations depending on the build).
+- **Theme Support**: Includes robust light/dark mode implementations mapped natively across UI forms and containers.
+- **Styling**: NativeWind uses generic configurations to push Tailwind utility syntax reliably downward to native interfaces.

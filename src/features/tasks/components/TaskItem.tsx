@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
+import Animated, { FadeInDown, FadeOutUp, Layout } from 'react-native-reanimated';
 import { Check, Trash2, Edit2 } from 'lucide-react-native';
 import { Task } from '../types/task.types';
 import { useThemeStore } from '../../../stores/theme.store';
@@ -16,7 +17,10 @@ export const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete, on
   const isDark = theme === 'dark';
 
   return (
-    <View 
+    <Animated.View 
+      entering={FadeInDown.duration(400).springify()}
+      exiting={FadeOutUp.duration(300)}
+      layout={Layout.springify()}
       className={`flex-row items-center justify-between p-4 mb-3 rounded-xl shadow-sm border ${
         isDark 
           ? 'bg-surface-dark border-border-dark' 
@@ -63,6 +67,6 @@ export const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete, on
           <Trash2 size={18} color="#ef4444" />
         </TouchableOpacity>
       </View>
-    </View>
+    </Animated.View>
   );
 };
