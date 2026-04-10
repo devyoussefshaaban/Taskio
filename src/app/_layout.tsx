@@ -1,12 +1,20 @@
 import { Slot } from 'expo-router';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { StatusBar } from 'expo-status-bar';
+import { ThemeProvider } from '../providers/ThemeProvider';
+import { ToastNotification } from '../components/ui/Toast';
+import { NativeWindStyleSheet } from 'nativewind';
+
+NativeWindStyleSheet.setOutput({
+  default: "native",
+});
 
 export default function RootLayout() {
   return (
     <SafeAreaProvider>
-      <StatusBar style="auto" />
-      <Slot />
+      <ThemeProvider>
+        <Slot />
+        <ToastNotification />
+      </ThemeProvider>
     </SafeAreaProvider>
   );
 }

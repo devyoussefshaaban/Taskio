@@ -5,6 +5,7 @@ import { generateId } from '../../../lib/uuid';
 interface TasksState {
   tasks: Task[];
   addTask: (title: string) => void;
+  editTask: (id: string, title: string) => void;
   toggleTask: (id: string) => void;
   deleteTask: (id: string) => void;
 }
@@ -13,6 +14,9 @@ export const useTasksStore = create<TasksState>((set) => ({
   tasks: [],
   addTask: (title: string) => set((state) => ({
     tasks: [...state.tasks, { id: generateId(), title, completed: false, createdAt: Date.now() }]
+  })),
+  editTask: (id: string, title: string) => set((state) => ({
+    tasks: state.tasks.map(t => t.id === id ? { ...t, title } : t)
   })),
   toggleTask: (id: string) => set((state) => ({
     tasks: state.tasks.map(t => t.id === id ? { ...t, completed: !t.completed } : t)
